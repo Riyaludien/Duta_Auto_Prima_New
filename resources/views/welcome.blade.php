@@ -1,196 +1,248 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selamat Datang - Duta Auto Prima</title>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    
+
     <style>
         :root {
-            /* Palet Warna Bengkel Momo (Duta Auto Prima) */
-            --primary-red: #FF0000;
-            --bg-black: #000000;
-            --surface-dark: #121212;
-            --text-main: #F0F8FF;
-            --text-muted: #B0BEC5;
+            --bg-main: #F8FAFC;
+            --text-main: #0F172A;
+            --text-muted: #64748B;
+            --primary-red: #EF4444;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            /* Background Gambar dengan Overlay Gelap */
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('{{ asset('images/banner-1.jpeg') }}');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-            color: var(--text-main);
+            background-color: var(--bg-main) !important;
         }
 
-        .hero-section {
-            background-color: var(--surface-dark);
-            border: 1px solid #333;
+        .section-title {
+            color: var(--primary-red);
+        }
+
+        .card-custom {
+            border-radius: 16px;
+            background: #FFFFFF;
+            transition: 0.25s;
+        }
+
+        .card-custom:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .service-card {
+            border-radius: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #FFFFFF;
+            border: 1px solid transparent;
+            /* 🔥 ini kuncinya */
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--primary-red);
+        }
+
+        .summary-box {
+            background: #FFFFFF;
             border-radius: 20px;
-            /* Glow Merah Halus di sekeliling Card */
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.15);
-            padding: 60px 40px;
-            max-width: 700px;
-            width: 90%;
-            text-align: center;
-            animation: slideUp 0.8s ease-out;
-            position: relative;
-            overflow: hidden;
         }
 
-        /* Garis Merah di Atas Card */
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--primary-red);
-        }
-
-        .hero-section .logo-icon {
-            font-size: 80px;
-            color: var(--primary-red);
-            margin-bottom: 20px;
-            display: inline-block;
-            animation: pulse-red 2s infinite;
-        }
-
-        .hero-section h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 15px;
-            letter-spacing: -1px;
-        }
-
-        .text-highlight {
-            color: var(--primary-red);
-        }
-
-        .hero-section p.lead {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            font-weight: 300;
-        }
-
-        /* Tombol Kustom */
-        .btn-custom-primary {
-            background-color: var(--primary-red);
-            border-color: var(--primary-red);
-            color: white;
-            font-weight: 600;
-            padding: 12px 30px;
-            border-radius: 50px;
-            transition: 0.3s;
-        }
-        
-        .btn-custom-primary:hover {
-            background-color: #cc0000;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .btn-custom-outline {
-            background-color: transparent;
-            border: 2px solid #555;
-            color: var(--text-main);
-            font-weight: 600;
-            padding: 12px 30px;
-            border-radius: 50px;
-            transition: 0.3s;
-        }
-
-        .btn-custom-outline:hover {
-            border-color: var(--text-main);
-            background-color: rgba(255,255,255,0.1);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Animasi */
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes pulse-red {
-            0% { transform: scale(1); text-shadow: 0 0 0 rgba(255, 0, 0, 0.7); }
-            50% { transform: scale(1.05); text-shadow: 0 0 20px rgba(255, 0, 0, 0.5); }
-            100% { transform: scale(1); text-shadow: 0 0 0 rgba(255, 0, 0, 0); }
-        }
-
-        @media (max-width: 768px) {
-            .hero-section h1 { font-size: 2rem; }
-            .hero-section { padding: 40px 20px; }
+        .cta-box {
+            background: #FFFFFF;
+            border-radius: 20px;
         }
     </style>
 </head>
+
 <body>
+    <div class="container py-5">
+        <div class="row-6">
+            @auth
+                <div class="mb-4 p-3 rounded" style="background: rgba(255,255,255,0.05);">
+                    <p class="mb-0 text-muted">Selamat datang kembali,</p>
+                    <h4 class="fw-bold text-white">{{ auth()->user()->name }}</h4>
+                </div>
 
-    <div class="hero-section">
-        <i class="bi bi-gear-wide-connected logo-icon"></i> 
-        
-        <h1>Duta <span class="text-highlight">Auto</span> Prima</h1>
-        <p class="lead">
-            Solusi otomotif terpercaya dengan suku cadang original dan mekanik profesional.
-        </p>
-        
-        @auth
-            <div class="mb-4 p-3 rounded" style="background: rgba(255,255,255,0.05);">
-                <p class="mb-0 text-muted">Selamat datang kembali,</p>
-                <h4 class="fw-bold text-white">{{ auth()->user()->name }}</h4>
+                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                    <a href="{{ route('beranda') }}" class="btn btn-custom-primary">
+                        <i class="bi bi-speedometer2 me-2"></i> Buka Dashboard
+                    </a>
+
+                    <a href="{{ route('logout') }}" class="btn btn-custom-outline"
+                        onclick="event.preventDefault(); document.getElementById('welcome-logout-form').submit();">
+                        <i class="bi bi-box-arrow-right me-2"></i> Logout
+                    </a>
+
+                    <form id="welcome-logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+
+            @elseguest
+            <div class="d-flex justify-content-end gap-2 flex-wrap">
+
+                <a href="{{ route('login') }}" class="btn btn-custom-primary" style="border: 2px solid transparent;"
+                    onmouseover="this.style.border='1px solid black'"
+                    onmouseout="this.style.border='2px solid white'"><i class="bi bi-box-arrow-in-right me-1"></i>
+                    Login
+                </a>
+
+                <a href="{{ route('register') }}" class="btn btn-custom-outline" style="border: 2px solid transparent;"
+                    onmouseover="this.style.border='1px solid black'" onmouseout="this.style.border='2px solid white'">
+                    <i class="bi bi-person-add me-1"></i> Daftar
+                </a>
+
+                <a href="{{ route('beranda') }}" class="btn btn-secondary">
+                    <i class="bi bi-eye me-1"></i> Lihat
+                </a>
+
             </div>
-            
-            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                <a href="{{ route('beranda') }}" class="btn btn-custom-primary">
-                    <i class="bi bi-speedometer2 me-2"></i> Buka Dashboard
-                </a>
-                
-                <a href="{{ route('logout') }}" 
-                   class="btn btn-custom-outline" 
-                   onclick="event.preventDefault(); document.getElementById('welcome-logout-form').submit();">
-                    <i class="bi bi-box-arrow-right me-2"></i> Logout
-                </a>
-                
-                <form id="welcome-logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
+            @endguest
+
+        </div>
+        <!-- HEADER -->
+        <div class="text-center mb-5">
+            <h1 class="fw-bold section-title"><i class="bi bi-gear-wide-connected logo-icon"></i>
+                DUTA AUTO PRIMA</h1>
+            <hr>
+            <h2 class="fw-bold section-title"></h2>
+
+            <p class="text-muted">Pusat Perbaikan & Perawatan Kendaraan Terpercaya di Yogyakarta <br> Solusi otomotif
+                terpercaya dengan suku cadang original dan mekanik profesional.</p>
+
+            <hr style="width:80px;height:4px;background:#EF4444;margin:20px auto;border:none;border-radius:10px;">
+        </div>
+
+        <!-- SECTION 1 -->
+        <div class="row align-items-center mb-5 g-4">
+
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-3">Bengkel Momo Yogyakarta</h2>
+
+                <p style="color:#475569;text-align:justify;">
+                    <strong>Bengkel Mobil Panggilan 24 Jam Yogyakarta (Bengkel Momo)</strong>
+                    <br> pusat perbaikan kendaraan terpercaya di Tamantirto, Bantul.
+                </p>
+
+                <p style="color:#64748B;text-align:justify;">
+                    Kami hadir sebagai solusi lengkap dengan mekanik berpengalaman dan pelayanan profesional
+                    baik di bengkel maupun layanan darurat di jalan.
+                </p>
             </div>
 
-        @elseguest
-            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                <a href="{{ route('login') }}" class="btn btn-custom-primary">
-                    <i class="bi bi-box-arrow-in-right me-2"></i> Login Member
-                </a>
-                <a href="{{ route('register') }}" class="btn btn-custom-outline">
-                    <i class="bi bi-person-add me-2"></i> Daftar Baru
-                </a>
-            </div>
-            
-            <div class="mt-4 pt-4 border-top border-secondary">
-                <a href="{{ route('beranda') }}" class="link-beranda">
-                    <i class="bi bi-eye me-1"></i> Lihat beranda & layanan tanpa login
-                </a>
+            <div class="col-lg-6">
+                <div class="card-custom p-4 shadow-sm border-start border-4 border-danger">
+                    <h5 class="fw-bold mb-2">
+                        <i class="bi bi-shield-check text-danger me-2"></i>Komitmen Kami
+                    </h5>
+
+                    <p class="mb-0 text-muted">
+                        Kendaraan Anda adalah prioritas kami. Kami memastikan setiap perbaikan dilakukan
+                        dengan <strong>akurat, transparan, dan efisien.</strong>
+                    </p>
+                </div>
             </div>
 
-        @endguest
+        </div>
+
+        <!-- LAYANAN -->
+        <div class="row g-4 mb-5">
+
+            <div class="col-12 text-center mb-2">
+                <h3 class="fw-bold">Layanan Unggulan</h3>
+            </div>
+
+            @php
+                $services = [
+                    ['title' => 'Perawatan Mesin', 'desc' => 'Tune up, servis injeksi & diesel.', 'icon' => 'bi-gear-wide-connected'],
+                    ['title' => 'Transmisi & Kemudi', 'desc' => 'Servis mobil matic & steering.', 'icon' => 'bi-compass'],
+                    ['title' => 'Kelistrikan', 'desc' => 'Perbaikan sistem listrik kendaraan.', 'icon' => 'bi-lightning-charge'],
+                    ['title' => 'Darurat 24 Jam', 'desc' => 'Layanan panggilan area Jogja.', 'icon' => 'bi-telephone-outbound'],
+                ];
+            @endphp
+
+            @foreach($services as $s)
+                <div class="col-md-3">
+                    <div class="service-card text-center p-3 shadow-sm h-100">
+                        <i class="bi {{ $s['icon'] }} display-6 text-danger mb-2"></i>
+                        <h6 class="fw-bold">{{ $s['title'] }}</h6>
+                        <p class="small text-muted">{{ $s['desc'] }}</p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        <!-- STATISTIK -->
+        <div class="row mb-5 p-4 shadow-sm summary-box text-center">
+
+            <div class="col-md-4">
+                <h2 class="fw-bold text-danger">4.8/5</h2>
+                <p class="text-muted">Rating Google</p>
+            </div>
+
+            <div class="col-md-4 border-start border-end">
+                <h2 class="fw-bold text-danger">24 Jam</h2>
+                <p class="text-muted">Layanan Darurat</p>
+            </div>
+
+            <div class="col-md-4">
+                <h2 class="fw-bold text-danger">Bantul</h2>
+                <p class="text-muted">Lokasi Strategis</p>
+            </div>
+
+        </div>
+
+        <!-- CONTACT -->
+        <div class="row g-4">
+
+            <div class="col-md-6">
+                <h4 class="fw-bold mb-3">Hubungi Kami</h4>
+
+                <ul class="list-unstyled" style="color:#475569;">
+                    <li class="mb-3">
+                        <i class="bi bi-geo-alt-fill text-danger me-2"></i>
+                        Kasihan RT 07, Tamantirto, Bantul
+                    </li>
+
+                    <li class="mb-3">
+                        <i class="bi bi-whatsapp text-danger me-2"></i>
+                        +62 857-4390-9369
+                    </li>
+
+                    <li class="mb-3">
+                        <i class="bi bi-clock-fill text-danger me-2"></i>
+                        08.30 – 23.00 WIB
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-6">
+                <div class="cta-box p-4 shadow-sm text-center">
+
+                    <h5 class="mb-3">Butuh Bantuan Darurat?</h5>
+
+                    <a href="https://wa.me/6283838762064" class="btn btn-danger rounded-pill px-4 fw-semibold">
+                        <i class="bi bi-whatsapp me-2"></i>Hubungi Teknisi
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
