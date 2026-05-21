@@ -87,11 +87,12 @@
                         </div>
 
                         <div class="col">
-                            <a href="{{ route('layanan.kategori', 'spesialislampu') }}" class="service-icon-box">
-                                <i class="bi bi-lightbulb"></i>
-                                <span>Spesialis<br>Lampu</span>
+                            <a href="{{ route('layanan.kategori', 'serviceac') }}" class="service-icon-box">
+                                <i class="bi bi-snow"></i>
+                                <span>Service<br>AC</span>
                             </a>
                         </div>
+
 
                         <div class="col">
                             <a href="{{ route('layanan.kategori', 'inspeksimobil') }}" class="service-icon-box">
@@ -165,23 +166,27 @@
                         <div class="product-item p-2">
                             <div class="custom-card h-100 d-flex flex-column shadow-sm border-0"
                                 style="background: #e6e6e6; border-radius: 12px;">
-                                <img src="{{ $barang->gambar ? asset('storage/' . $barang->gambar) : asset('images/katalog/default.jpg') }}"
-                                    class="card-img-top" alt="{{ $barang->nama_barang }}">
+                                <a href="{{ route('katalog.show', $barang->id) }}" class="text-decoration-none text-dark">
 
-                                <div class="card-body-custom p-3 flex-grow-1">
-                                    <span class="product-category text-danger small fw-bold">
-                                        {{ $barang->kategori->nama_kategori ?? 'Umum' }}
-                                    </span>
+                                    <img src="{{ $barang->gambar ? asset('storage/' . $barang->gambar) : asset('images/katalog/default.jpg') }}"
+                                        class="card-img-top" alt="{{ $barang->nama_barang }}">
 
-                                    <h6 class="card-title-custom text-black text-wrap mt-1 mb-2"
-                                        style="font-size: 0.9rem; line-height: 1.2;">
-                                        {{ Str::limit($barang->nama_barang, 40) }}
-                                    </h6>
+                                    <div class="card-body-custom p-3 flex-grow-1">
+                                        <span class="product-category text-danger small fw-bold">
+                                            {{ $barang->kategori->nama_kategori ?? 'Umum' }}
+                                        </span>
 
-                                    <div class="product-price fw-bold text-black">
-                                        Rp {{ number_format($barang->harga, 0, ',', '.') }}
+                                        <h6 class="card-title-custom text-black text-wrap mt-1 mb-2"
+                                            style="font-size: 0.9rem; line-height: 1.2;">
+                                            {{ Str::limit($barang->nama_barang, 40) }}
+                                        </h6>
+
+                                        <div class="product-price fw-bold text-black">
+                                            Rp {{ number_format($barang->harga, 0, ',', '.') }}
+                                        </div>
                                     </div>
-                                </div>
+
+                                </a>
 
                                 <div class="p-3 pt-0 mt-auto">
                                     <button type="button" class="btn btn-outline-custom rounded-pill btn-sm w-100"

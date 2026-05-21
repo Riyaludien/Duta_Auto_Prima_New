@@ -42,23 +42,6 @@ Route::get('/beranda', function () {
 Route::redirect('/home', '/beranda');
 Route::redirect('/welcome', '/');
 
-// Route::get('/beranda', function () {
-//     // 1. Ambil 6 Ulasan Terbaru (Beserta data User-nya)
-//     $reviews = Review::with('user')->latest()->take(6)->get();
-
-//     // 2. Tampilkan Halaman Beranda
-//     return view('user.beranda', compact('reviews'));
-// })->name('beranda');
-
-// // Redirect /home agar lari ke / juga
-// Route::redirect('/home', '/');
-
-// // Redirect /welcome agar lari ke / juga (jaga-jaga kalau ada link lama)
-// Route::redirect('/welcome', '/');
-
-// // Tambahan Redirect agar tidak 404 saat akses /beranda
-// Route::redirect('/beranda', '/');
-
 
 // --- MENU NAVBAR LAINNYA ---
 Route::get('/bengkel', function () {
@@ -80,9 +63,9 @@ Route::get('/katalog', function () {
 
 Route::get('/katalog', [KatalogController::class, 'index'])->name('katalog');
 
-Route::get('/katalog/{id}', function ($id) {
-    return view('user.katalog.detail', ['id' => $id]);
-})->name('katalog.detail');
+// Route::get('/katalog/{id}', function ($id) {
+//     return view('user.katalog.detail', ['id' => $id]);
+// })->name('katalog.detail');
 
 Route::post('/cart/add/{id}', [CartController::class, 'add'])
     ->middleware('auth')
@@ -94,10 +77,6 @@ Route::get('/jasa', function () {
     return view('user.jasa.index');
 })->name('jasa.index');
 
-// --- LAYANAN (Dinamis) ---
-// Route::get('/layanan/{kategori}', function ($kategori) {
-//     return "Halaman Layanan: " . $kategori;
-// })->name('layanan.kategori');
 Route::get('/layanan/{kategori}', function ($kategori) {
     return view('user.layanan.' . $kategori);
 })->name('layanan.kategori');

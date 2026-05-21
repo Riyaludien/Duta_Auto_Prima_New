@@ -46,6 +46,7 @@ class BarangController extends Controller
             'stok' => 'required|integer|min:0',
             'harga' => 'required|numeric|min:0',
             'supplier_id' => 'nullable|exists:suppliers,id',
+            'deskripsi' => $request->deskripsi, // 🔥 tambah ini
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // ✅ TAMBAH INI
         ]);
 
@@ -90,6 +91,7 @@ class BarangController extends Controller
             'stok' => 'required|integer|min:0',
             'harga' => 'required|numeric|min:0',
             'supplier_id' => 'nullable|exists:suppliers,id',
+            'deskripsi' => 'nullable|string',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 

@@ -17,9 +17,10 @@
                 <select name="kategori_id" class="form-control" required>
                     <option value="">-- Pilih Kategori --</option>
                     @foreach ($kategoris as $kategori)
-                        <option value="{{ $kategori->id }}">
+                        <option value="{{ $kategori->id }}" {{ old('kategori_id') == $kategori->id ? 'selected' : '' }}>
                             {{ $kategori->nama_kategori }}
                         </option>
+
                     @endforeach
                 </select>
             </div>
@@ -36,7 +37,7 @@
 
             <div class="mb-3">
                 <label>Supplier</label>
-                <select name="supplier_id" class="form-control" required>
+                <select name="supplier_id" id="supplierSelect" class="form-control" required>
                     <option value="">-- Pilih Supplier --</option>
 
                     @foreach ($suppliers as $supplier)
@@ -46,6 +47,12 @@
                     @endforeach
                 </select>
             </div>
+            <div class="mb-3">
+                <label>Deskripsi</label>
+                <textarea name="deskripsi" class="form-control" rows="4"
+                    placeholder="Masukkan deskripsi barang...">{{ old('deskripsi') }}</textarea>
+            </div>
+
 
             <div class="mb-3">
                 <label>Gambar Barang</label>

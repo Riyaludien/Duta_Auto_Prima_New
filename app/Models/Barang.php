@@ -16,6 +16,7 @@ class Barang extends Model
         'stok',
         'harga',
         'supplier',
+        'deskripsi', // 🔥 tambah ini
         'gambar',
     ];
 

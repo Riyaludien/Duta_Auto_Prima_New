@@ -7,21 +7,21 @@
     {{-- CSS --}}
     <style>
         .page-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+            background: linear-gradient(rgba(37, 99, 235, 0.85), rgba(30, 64, 175, 0.85)),
                 url('{{ asset('images/banner-1.jpg') }}');
             background-size: cover;
             background-position: center;
             padding: 60px 0;
-            border-bottom: 2px solid var(--primary-red);
+            border-bottom: 2px solid var(--primary-blue);
             margin-bottom: 40px;
         }
 
         .table-container {
-            background-color: var(--surface-light);
+            background-color: var(--surface-white);
             border: 1px solid var(--border-light);
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
         }
 
         .custom-table {
@@ -31,89 +31,95 @@
         }
 
         .custom-table thead {
-            background-color: #2563EB;
-            border-bottom: 2px solid var(--primary-red);
+            background: var(--primary-blue);
         }
 
         .custom-table th {
             padding: 15px;
             text-align: left;
-            font-weight: 700;
-            color: var(--primary-red);
+            font-weight: 600;
+            color: #fff;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
         }
 
         .custom-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #333;
+            padding: 14px 15px;
+            border-bottom: 1px solid var(--border-light);
             vertical-align: middle;
             font-size: 0.95rem;
         }
 
         .custom-table tr:hover {
-            background-color: #e6e6e6;
+            background-color: var(--surface-light);
+            transition: 0.2s ease;
         }
 
         .badge-category {
             font-size: 0.75rem;
-            padding: 4px 8px;
-            border-radius: 4px;
-            color: var(--text-main);
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--primary-blue);
+            font-weight: 500;
             display: inline-block;
         }
 
         .price-tag {
             font-weight: 700;
-            color: var(--primary-green);
+            color: var(--primary-blue);
             font-family: monospace;
             font-size: 1rem;
         }
 
         .search-jasa {
-            background: #fff;
-            color: #000;
-            border: 1px solid #ddd;
+            background: var(--surface-white);
+            color: var(--text-main);
+            border: 1px solid var(--border-light);
             padding: 10px 40px 10px 15px;
-            border-radius: 8px;
+            border-radius: 10px;
             width: 100%;
+            transition: all 0.2s ease;
         }
 
         .search-jasa::placeholder {
-            color: #999;
+            color: var(--text-muted);
         }
 
         .search-jasa:focus {
             border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
             outline: none;
         }
 
-        /* Styles untuk Modal Gelap */
+        /* MODAL */
         .modal-content {
-            border-radius: 12px;
+            border-radius: 16px;
             border: 1px solid var(--border-light);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
         }
 
         .modal-header {
-            background: #f8fafc;
+            background: var(--surface-light);
+            border-bottom: 1px solid var(--border-light);
         }
 
         .modal-footer {
-            border-top: 1px solid #333;
+            border-top: 1px solid var(--border-light);
         }
 
         .form-control-light {
-            background-color: #000;
-            border: 1px solid #333;
-            color: white;
+            background-color: var(--surface-white);
+            border: 1px solid var(--border-light);
+            color: var(--text-main);
+            border-radius: 8px;
         }
 
         .form-control-light:focus {
-            background-color: #111;
-            color: white;
-            border-color: var(--primary-red);
-            box-shadow: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+            outline: none;
         }
 
         @media (max-width: 768px) {
@@ -130,6 +136,7 @@
     </style>
 
 
+
     <div class="container mb-5">
         {{-- ALERT SUKSES --}}
         @if(session('success'))
@@ -137,17 +144,25 @@
                 <i class="bi bi-check-circle me-2"></i> {{ session('success') }}
             </div>
         @endif
-        <div class="p-5 mb-4 rounded text-white" style="background: linear-gradient(135deg,#1e1e1e,#343a40);">
+        <div class="p-5 mb-4 rounded-4 text-white"
+            style="background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-hover));">
+
             <h1 class="fw-bold">Service Kaki-Kaki Mobil</h1>
-            <p class="mb-3">
-                Menjaga kenyamanan dan kestabilan kendaraan Anda saat berkendara.
-                Performa kaki-kaki yang optimal akan memberikan pengalaman berkendara yang lebih aman dan nyaman.
+
+            <p class="mb-3" style="max-width:600px;">
+                Menjaga kenyamanan dan kestabilan kendaraan saat digunakan.
+                Sistem kaki-kaki yang optimal membantu mengurangi getaran,
+                meningkatkan kontrol, serta memberikan pengalaman berkendara yang lebih aman.
             </p>
-            <button class="btn btn-danger rounded-pill px-4"
+
+            <button class="btn rounded-pill px-4" style="background:white; color:var(--primary-blue); font-weight:600;"
                 onclick="document.getElementById('header').scrollIntoView({behavior:'smooth'})">
+
                 Lihat Layanan
+
             </button>
         </div>
+
 
         <div class="mb-5">
             <h4 class="fw-bold mb-4">Tanda-Tanda Kaki-Kaki Bermasalah</h4>
@@ -157,8 +172,9 @@
                 <!-- CARD 1 -->
                 <div class="col-md-3">
                     <div class="card h-100 border-0 shadow-sm">
-                        <img src="https://img.freepik.com/free-photo/car-repair-concept_23-2148990243.jpg"
-                            class="card-img-top" style="height:180px; object-fit:cover;">
+                        <img src="{{ asset('storage/katalog/bunyii.jpeg') }}" class="card-img-top"
+                            style="height:180px; object-fit:cover;">
+
                         <div class="card-body">
                             <h6 class="fw-bold">Bunyi Saat Jalan Rusak</h6>
                             <p class="text-muted small mb-0">
@@ -171,7 +187,7 @@
                 <!-- CARD 2 -->
                 <div class="col-md-3">
                     <div class="card h-100 border-0 shadow-sm">
-                        <img src="https://img.freepik.com/free-photo/man-driving-car_23-2148889993.jpg" class="card-img-top"
+                        <img src="{{ asset('storage/katalog/limbung.jpeg') }}" class="card-img-top"
                             style="height:180px; object-fit:cover;">
                         <div class="card-body">
                             <h6 class="fw-bold">Kendaraan Tidak Stabil</h6>
@@ -185,7 +201,7 @@
                 <!-- CARD 3 -->
                 <div class="col-md-3">
                     <div class="card h-100 border-0 shadow-sm">
-                        <img src="https://img.freepik.com/free-photo/worn-car-tire_23-2148982365.jpg" class="card-img-top"
+                        <img src="{{ asset('storage/katalog/ban.jpeg') }}" class="card-img-top"
                             style="height:180px; object-fit:cover;">
                         <div class="card-body">
                             <h6 class="fw-bold">Ban Aus Tidak Merata</h6>
@@ -199,8 +215,8 @@
                 <!-- CARD 4 -->
                 <div class="col-md-3">
                     <div class="card h-100 border-0 shadow-sm">
-                        <img src="https://img.freepik.com/free-photo/car-steering-wheel_23-2148990211.jpg"
-                            class="card-img-top" style="height:180px; object-fit:cover;">
+                        <img src="{{ asset('storage/katalog/stir.jpeg') }}" class="card-img-top"
+                            style="height:180px; object-fit:cover;">
                         <div class="card-body">
                             <h6 class="fw-bold">Setir Tidak Lurus</h6>
                             <p class="text-muted small mb-0">
@@ -1011,22 +1027,22 @@
 
                     pageData.forEach(item => {
                         const card = `
-                                                                                                                                                                                    <div class="col-md-4">
-                                                                                                                                                                                        <div class="card h-100 shadow-sm border-0">
-                                                                                                                                                                                            <div class="card-body">
-                                                                                                                                                                                                <h5 class="fw-bold">${item.name}</h5>
-                                                                                                                                                                                                <p class="text-muted">
-                                                                                                                                                                                                    Layanan profesional untuk menjaga performa kaki-kaki mobil tetap optimal.
-                                                                                                                                                                                                </p>
-                                                                                                                                                                                                <h6 class="text-danger">Rp ${item.price}</h6>
-                                                                                                                                                                                                <button class="btn btn-outline-danger rounded-pill mt-2"
-                                                                                                                                                                                                    onclick="openBookingModal('${item.name}','${item.code}','${item.price}')">
-                                                                                                                                                                                                    Booking
-                                                                                                                                                                                                </button>
-                                                                                                                                                                                            </div>
-                                                                                                                                                                                        </div>
-                                                                                                                                                                                    </div>
-                                                                                                                                                                                `;
+                                                                                                                                                                                                                    <div class="col-md-4">
+                                                                                                                                                                                                                        <div class="card h-100 shadow-sm border-0">
+                                                                                                                                                                                                                            <div class="card-body">
+                                                                                                                                                                                                                                <h5 class="fw-bold">${item.name}</h5>
+                                                                                                                                                                                                                                <p class="text-muted">
+                                                                                                                                                                                                                                    Layanan profesional untuk menjaga performa kaki-kaki mobil tetap optimal.
+                                                                                                                                                                                                                                </p>
+                                                                                                                                                                                                                                <h6 class="text-danger">Rp ${item.price}</h6>
+                                                                                                                                                                                                                                <button class="btn btn-outline-danger rounded-pill mt-2"
+                                                                                                                                                                                                                                    onclick="openBookingModal('${item.name}','${item.code}','${item.price}')">
+                                                                                                                                                                                                                                    Booking
+                                                                                                                                                                                                                                </button>
+                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                `;
                         container.innerHTML += card;
                     });
                 }
