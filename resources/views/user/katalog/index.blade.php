@@ -151,12 +151,32 @@
                                             </div>
 
                                             <div class="p-2">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="fw-bold text-truncate">
+                                                        {{ $barang->nama_barang }}
+                                                    </div>
+                                                </div>
                                                 <small class="text-muted">
                                                     {{ $barang->kategori->nama_kategori ?? '-' }}
                                                 </small>
+                                                <div>
+                                                    <div class="text">
+                                                        @if($barang->stok > 10)
+                                                            <small class="text-success">
+                                                                Stock ({{ $barang->stok }})
+                                                            </small>
 
-                                                <div class="fw-bold text-truncate">
-                                                    {{ $barang->nama_barang }}
+                                                        @elseif($barang->stok > 0)
+                                                            <small class="text-warning">
+                                                                Stok Terbatas ({{ $barang->stok }})
+                                                            </small>
+
+                                                        @else
+                                                            <small class="text-danger">
+                                                                Stok Habis
+                                                            </small>
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
 

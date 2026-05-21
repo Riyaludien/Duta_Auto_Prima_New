@@ -51,6 +51,25 @@
                     <span class=" bg-light text-dark mb-2">
                         {{ $barang->kategori->nama_kategori ?? '-' }}
                     </span>
+                    <div>
+                        <div class="text">
+                            @if($barang->stok > 10)
+                                <small class="text-success">
+                                    Stock ({{ $barang->stok }})
+                                </small>
+
+                            @elseif($barang->stok > 0)
+                                <small class="text-warning">
+                                    Stok Terbatas ({{ $barang->stok }})
+                                </small>
+
+                            @else
+                                <small class="text-danger">
+                                    Stok Habis
+                                </small>
+                            @endif
+                        </div>
+                    </div>
                     <!-- HARGA -->
                     <h4 class="text-danger fw-bold mb-3">
                         Rp {{ number_format($barang->harga, 0, ',', '.') }}
