@@ -97,29 +97,20 @@ class BarangController extends Controller
 
         $oldStok = $barang->stok;
 
-        // ambil semua data kecuali gambar dulu
         $data = $request->except('gambar');
 
-        // ================= HANDLE GAMBAR =================
         if ($request->hasFile('gambar')) {
-
-            // hapus gambar lama
             if ($barang->gambar && file_exists(storage_path('app/public/' . $barang->gambar))) {
                 unlink(storage_path('app/public/' . $barang->gambar));
             }
 
-            // upload baru
-            $path = $request->file('gambar')->store('katalog', 'public');
-
-            // masukin ke data
-            $data['gambar'] = $path;
+            $data['gambar'] = $request->file('gambar')->store('katalog', 'public');
         }
 
-        // update data
         $barang->update($data);
 
-        // ================= LOG STOK =================
         $diff = $barang->stok - $oldStok;
+
         if ($diff != 0) {
             LogStok::create([
                 'barang_id' => $barang->id,
@@ -129,7 +120,8 @@ class BarangController extends Controller
             ]);
         }
 
-        return redirect()->route('barangs.index')->with('success', 'Barang berhasil diperbarui!');
+        return redirect()->route('barangs.index')
+            ->with('success', 'Barang berhasil diperbarui!');
     }
 
     public function destroy(Barang $barang)

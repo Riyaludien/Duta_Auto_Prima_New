@@ -430,7 +430,7 @@ footer {
 .btn-outline-custom:hover {
     background-color: var(--primary-blue);
     color: white;
-    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
 }
 
 /* --- SCROLL & BUTTONS --- */
@@ -551,10 +551,10 @@ footer {
     font-size: 0.75rem;
     font-weight: 600;
     z-index: 2;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(255, 231, 231, 0.8);
     backdrop-filter: blur(4px);
 }
-
+/* 
 .status-badge.open {
     color: var(--primary-green);
     border: 1px solid var(--primary-green);
@@ -563,7 +563,7 @@ footer {
 .status-badge.closed {
     color: #ff4444;
     border: 1px solid #ff4444;
-}
+} */
 
 .location-body {
     padding: 20px;

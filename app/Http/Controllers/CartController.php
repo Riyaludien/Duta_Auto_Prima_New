@@ -36,6 +36,9 @@ class CartController extends Controller
 
         $barang = Barang::findOrFail($id);
 
+        if ($barang->stok <= 0) {
+            return back()->with('error', 'Barang sedang habis, tidak bisa ditambahkan ke keranjang!');
+        }
         // Cegah melebihi stok
         if ($request->jumlah > $barang->stok) {
             return back()->with('error', 'Jumlah melebihi stok!');

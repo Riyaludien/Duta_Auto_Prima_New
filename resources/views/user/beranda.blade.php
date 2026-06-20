@@ -7,7 +7,13 @@
 
     <section class="hero-section">
         <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @endif
             <!-- INDICATOR (titik bawah) -->
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
@@ -143,6 +149,19 @@
         }
     </style>
     <section class="container mb-5">
+        <style>
+            .btn-outline-custom {
+                border: 1px solid #2563eb;
+                color: #2563eb;
+                background: transparent;
+                transition: 0.3s;
+            }
+
+            .btn-outline-custom:hover {
+                background: #2563eb;
+                color: white;
+            }
+        </style>
         <div class="section-header">
             <div>
                 <h2 class="section-title">Katalog Produk & Sparepart</h2>
@@ -204,6 +223,7 @@
             <button class="scroll-btn right" onclick="scrollKatalog('right')">
                 <i class="bi bi-chevron-right"></i>
             </button>
+
         </div>
     </section>
 
@@ -379,7 +399,7 @@
     @foreach ($barangs as $barang)
         <div class="modal fade" id="addCartModal{{ $barang->id }}" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content bg-dark text-white">
+                <div class="modal-content bg-light text-black">
 
                     <div class="modal-header border-secondary">
                         <h5 class="modal-title">
@@ -400,7 +420,7 @@
                         </div>
 
                         <div class="modal-footer border-secondary">
-                            <button type="submit" class="btn btn-danger w-100">
+                            <button type="submit" class="btn btn-primary w-100">
                                 Masukkan ke Keranjang
                             </button>
                         </div>
